@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ThemeSong : MonoBehaviour
 {
-
-    // Configuration Parameters
+    [Header("Sounds")]
     [SerializeField] AudioSource mainTheme;
 
+    [Header("Scene Number")]
     // Build Scene Index
-    int currentSceneIndex;
+    [SerializeField] int currentSceneIndex;
 
     private void Awake()
     {
@@ -19,15 +19,22 @@ public class ThemeSong : MonoBehaviour
 
     void Update()
     {
+        FixedUpdate();
+    }
+
+    private void FixedUpdate()
+    {
         // Grabs the number of the current scene
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if( currentSceneIndex == 3 || currentSceneIndex == 9 ) // Fade out on loading screen
+        if( currentSceneIndex == 2 ) 
         {
+            // Fade out on loading screen
             StartCoroutine(FadeAudioSource.StartFade(mainTheme, 3f, 0));
         }
 
-        if( currentSceneIndex == 4 || currentSceneIndex == 10 ) // Destroy it on game screen
+        // Destroy it on game screen
+        if( currentSceneIndex == 3 ) 
         {
             Destroy(gameObject);
         }
@@ -46,21 +53,20 @@ public class ThemeSong : MonoBehaviour
         }
     }
 
-    // Not being used yet - 5/24/2020
-    public void PauseStartMenuSong()
+    public void PauseThemeSong()
     {
         mainTheme.Pause();
-        Debug.Log("Paused");
     }
 
-    // Not being used yet - 5/24/2020
-    public void PlayStartMenuSong()
+    public void PlayThemeSong()
     {
         mainTheme.Play();
-        Debug.Log("Play");
     }
     
 }
+
+
+/* Below is static class used to fade the audio source in/out */
 
 public static class FadeAudioSource {
 
@@ -77,4 +83,5 @@ public static class FadeAudioSource {
         }
         yield break;
     }
+    
 }
