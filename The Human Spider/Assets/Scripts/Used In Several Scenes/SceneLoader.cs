@@ -23,12 +23,6 @@ public class SceneLoader : MonoBehaviour
         {
             StartCoroutine( SplashToStart() );
         }
-
-        // If on loading screen, load game
-        if (currentSceneIndex == 2)
-        {
-            StartCoroutine( LoadToGame() );
-        }
     }
 
     void LoadMainMenu()
@@ -38,7 +32,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
@@ -50,11 +44,5 @@ public class SceneLoader : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToMainMenu);
         LoadMainMenu();
-    }
-
-    IEnumerator LoadToGame()
-    {
-        yield return new WaitForSeconds(timeToStartGame);
-        LoadGame();
     }
 }
