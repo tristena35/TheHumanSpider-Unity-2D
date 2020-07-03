@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    Vector2 buildingMovement = new Vector2( -0.2f, 0 );
-
+    [Header("Movement")]
+    [SerializeField] float moveSpeed = -5f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,8 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(Time.deltaTime * -5f, 0, 0);
-
+        transform.position += new Vector3(Time.deltaTime * moveSpeed, 0, 0);
     }
+
+    // TODO: Create method to put a rigidbody as well as collider when instantiated
 }
