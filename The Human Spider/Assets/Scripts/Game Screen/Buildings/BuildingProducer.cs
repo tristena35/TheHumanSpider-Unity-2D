@@ -32,6 +32,5 @@ public class BuildingProducer : MonoBehaviour
                 buildingPrefab, 
                 transform.position, 
                 Quaternion.identity) as GameObject;
-        //building.GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, 0f);
     }
 }

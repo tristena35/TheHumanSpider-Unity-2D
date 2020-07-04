@@ -6,17 +6,26 @@ public class Building : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed = -5f;
+
+    float timeTillDestroy = 8f;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        //StartCoroutine( WaitThenDestroy() );
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(Time.deltaTime * moveSpeed, 0, 0);
+        if (this != null)  
+            transform.position += new Vector3(Time.deltaTime * moveSpeed, 0, 0);
+    }
+
+    IEnumerator WaitThenDestroy()
+    {
+        yield return new WaitForSeconds(timeTillDestroy);
+        Destroy(gameObject);
     }
 
     // TODO: Create method to put a rigidbody as well as collider when instantiated

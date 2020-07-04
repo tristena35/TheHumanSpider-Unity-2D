@@ -18,6 +18,9 @@ public class DestroyerWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Destroy(collider.gameObject);
+        if (collider.gameObject != null)
+        {    
+            Destroy(collider.gameObject);
+        }
     }
 }
