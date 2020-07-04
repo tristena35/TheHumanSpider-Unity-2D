@@ -23,6 +23,12 @@ public class SceneLoader : MonoBehaviour
         {
             StartCoroutine( SplashToStart() );
         }
+
+        // If we are at the instructions screen, do coroutine
+        if (currentSceneIndex == 2)
+        {
+            StartCoroutine( InstructionsToGame() );
+        }
     }
 
     void LoadMainMenu()
@@ -30,9 +36,14 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void LoadGame()
+    public void LoadInstructionsScreen()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(3);
     }
 
     public void QuitGame()
@@ -45,4 +56,21 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(timeToMainMenu);
         LoadMainMenu();
     }
+
+    IEnumerator InstructionsToGame()
+    {
+        yield return new WaitForSeconds(timeToStartGame);
+        LoadGame();
+    }
 }
+
+/*
+
+SCENE NUMBERS:
+
+Splash Screen   - 0
+Main Menu       - 1
+Instructions Screen  - 2
+Game            - 3
+
+*/

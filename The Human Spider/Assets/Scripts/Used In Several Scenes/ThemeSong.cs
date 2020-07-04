@@ -30,7 +30,7 @@ public class ThemeSong : MonoBehaviour
         if( currentSceneIndex == 2 ) 
         {
             // Fade out on loading screen
-            StartCoroutine(FadeAudioSource.StartFade(mainTheme, 3f, 0));
+            StartCoroutine(FadeAudioSource.StartFade(mainTheme, 4f, 0));
         }
 
         // Destroy it on game screen
