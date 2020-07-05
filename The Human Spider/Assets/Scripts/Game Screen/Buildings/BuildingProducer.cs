@@ -7,8 +7,6 @@ public class BuildingProducer : MonoBehaviour
     [Header("Building to be Produced")]
     [SerializeField] GameObject buildingPrefab;
 
-    float moveSpeed = -5f;
-
     // Start is called before the first frame update
     void Start()
     {

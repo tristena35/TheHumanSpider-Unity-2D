@@ -5,14 +5,14 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = -5f;
+    [SerializeField] float moveSpeed = -3f;
 
     float timeTillDestroy = 8f;
     
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine( WaitThenDestroy() );
+        
     }
 
     // Update is called once per frame
