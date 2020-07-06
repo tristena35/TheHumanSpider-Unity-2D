@@ -31,7 +31,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    void LoadMainMenu()
+    public void LoadMainMenu()
     {
         SceneManager.LoadScene(1);
     }
@@ -44,6 +44,11 @@ public class SceneLoader : MonoBehaviour
     public void LoadGame()
     {
         SceneManager.LoadScene(3);
+    }
+
+    public void LoadGameOver()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void QuitGame()

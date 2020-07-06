@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    StartTrigger startTrigger;
+    GameOverTrigger gameOverTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
-        startTrigger = FindObjectOfType<StartTrigger>();
+        gameOverTrigger = FindObjectOfType<GameOverTrigger>();
     }
 
     // Update is called once per frame
