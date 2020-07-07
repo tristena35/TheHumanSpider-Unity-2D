@@ -6,6 +6,9 @@ public class HumanSpider : MonoBehaviour
 {
     Rigidbody2D rigidBody2D;
 
+    [SerializeField] AudioClip hangOnMaryJaneSFX;
+    float voiceVolume = 1f;
+
     [Header("Number Values")]
     [SerializeField] float jumpForce = 4f;
     [SerializeField] float initialJumpForceUp = 10f;
@@ -18,6 +21,9 @@ public class HumanSpider : MonoBehaviour
 
         // Have the human spider jump onto the scene
         JumpOntoScene();
+
+        // Play Yelling Audio Clip
+        AudioSource.PlayClipAtPoint(hangOnMaryJaneSFX, Camera.main.transform.position, voiceVolume);
     }
 
     // Update is called once per frame
