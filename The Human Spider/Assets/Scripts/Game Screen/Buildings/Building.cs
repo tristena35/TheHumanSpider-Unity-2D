@@ -5,7 +5,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = -3f;
+    [SerializeField] float moveSpeed = -5f;
 
     StartTrigger startTrigger;
 
@@ -20,7 +20,7 @@ public class Building : MonoBehaviour
     {
         // If game has started, buildings start moving
         if ( startTrigger.IsStarted() )  
-            transform.position += new Vector3( Time.deltaTime * moveSpeed, 0, 0) ;
+            transform.position += new Vector3( Time.deltaTime * moveSpeed, 0, 0);
     }
 
     // TODO: Create method to put a rigidbody as well as collider when instantiated
