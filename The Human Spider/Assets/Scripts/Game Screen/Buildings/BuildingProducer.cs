@@ -24,6 +24,7 @@ public class BuildingProducer : MonoBehaviour
         CreateBuilding();
     }
 
+    // Only create button when building hits this trigger
     void CreateBuilding()
     {
         GameObject building = Instantiate(

@@ -13,8 +13,10 @@ public class BuildingTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Building Trigger");
-        buildingProducer.ProduceBuilding();
+        if( collider.CompareTag("Building") )
+        {
+            buildingProducer.ProduceBuilding();
+        }
     }
 }
 

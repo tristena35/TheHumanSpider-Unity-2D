@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class MaryJane : MonoBehaviour
 {
-    float timeToMove = 1f;
-
-    float moveSpeed = 5f;
-
-    bool isMoving = true;
+    [Header("Mary Jane Audio")]
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] bool isMoving = true;
+    float timeToMove = 0.7f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +25,7 @@ public class MaryJane : MonoBehaviour
     IEnumerator MoveForTwoSeconds()
     {
         yield return new WaitForSeconds(timeToMove);
+
         isMoving = false;
-        Debug.Log("Here");
     }
 }

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Villain : MonoBehaviour
 {
-    float timeToMove = 1f;
+    [Header("Villain Traits")]
+    [SerializeField] bool isMoving = true;
+    [SerializeField] float moveSpeed = 5f;
+    float timeToMove = 0.7f;
 
-    float moveSpeed = 5f;
+    [Header("Villain Projectile")]
+    [SerializeField] GameObject projectile;
+    Vector2 bombMoveSpeed = new Vector2( -5f, 0f );
+    
 
-    bool isMoving = true;
-
+    [Header("Villain Sounds")]
     [SerializeField] AudioClip helloMyDearSFX;
     float villainVolume = 1f;
 
@@ -29,10 +34,29 @@ public class Villain : MonoBehaviour
             transform.position += new Vector3( Time.deltaTime * moveSpeed, Time.deltaTime * moveSpeed, 0);
     }
 
+    void ThrowBomb()
+    {
+        GameObject bomb = Instantiate(
+                projectile,
+                transform.position,
+                Quaternion.identity) as GameObject;
+        bomb.GetComponent<Rigidbody2D>().velocity = bombMoveSpeed;
+    }
+
     IEnumerator MoveForTwoSeconds()
     {
         yield return new WaitForSeconds(timeToMove);
+
+        // Stop moving
         isMoving = false;
-        Debug.Log("Here");
+        StartCoroutine( ThrowBombsContinuously() );
+    }
+
+    IEnumerator ThrowBombsContinuously()
+    {
+        yield return new WaitForSeconds(3f);
+
+        ThrowBomb();
+        StartCoroutine( ThrowBombsContinuously() );
     }
 }
