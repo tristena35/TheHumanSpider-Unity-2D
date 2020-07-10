@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanSpider : MonoBehaviour
 {
     [Header("Human Spider Traits")]
-    [SerializeField] float jumpForce = 4f;
+    [SerializeField] float jumpForce = 3f;
     [SerializeField] float initialJumpForceUp = 10f;
     [SerializeField] float initialJumpForceRight = 3f;
     [SerializeField] float timeToMove = 3f;

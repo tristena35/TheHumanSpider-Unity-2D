@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7d2371d8e02466bac56f71c4c0171e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 4
+  jumpForce: 3
   initialJumpForceUp: 10
   initialJumpForceRight: 3
   timeToMove: 3
@@ -1192,6 +1192,7 @@ GameObject:
   - component: {fileID: 1237493837}
   - component: {fileID: 1237493838}
   - component: {fileID: 1237493839}
+  - component: {fileID: 1237493840}
   m_Layer: 0
   m_Name: Mary Jane
   m_TagString: Untagged
@@ -1275,9 +1276,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba576ed38fba24415bff40c992e84a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToMove: 1
-  moveSpeed: 5
   isMoving: 1
+  moveSpeed: 5
+  moveVerticalSpeed: -2
+--- !u!50 &1237493840
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237493836}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1299883686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1469,7 @@ GameObject:
   - component: {fileID: 1483247596}
   - component: {fileID: 1483247597}
   - component: {fileID: 1483247598}
+  - component: {fileID: 1483247599}
   m_Layer: 0
   m_Name: Villain
   m_TagString: Untagged
@@ -1532,9 +1555,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 1
   moveSpeed: 5
+  moveVerticalSpeed: -2
   projectile: {fileID: 1332450623397921361, guid: ecaf44f68bd2748b0b78eb38f4edcb0c,
     type: 3}
   helloMyDearSFX: {fileID: 8300000, guid: 0ac385b79cd7e4d7b95d266e5553574d, type: 3}
+  goblinInGameQuotes:
+  - {fileID: 8300000, guid: 3a49d463c8a9a4864a237e8079e149f4, type: 3}
+  - {fileID: 8300000, guid: fd13b8b50bb934f3a841e56b7c72769d, type: 3}
+  - {fileID: 8300000, guid: 15e4805d108e8409c91a1b5e956047d9, type: 3}
+  - {fileID: 8300000, guid: 332a0a659ff57488cb5e31222393da16, type: 3}
+  - {fileID: 8300000, guid: 5bbebd3a2434447e5b085878c7be45b1, type: 3}
+  - {fileID: 8300000, guid: 405543e6d710341919326bfdfb7a3c23, type: 3}
+  - {fileID: 8300000, guid: 7b70d2eace76a4c54a3bec98d996a230, type: 3}
+  - {fileID: 8300000, guid: e9f2bfda103b24e06b492c408247b365, type: 3}
+  - {fileID: 8300000, guid: 8e368021a4efd49c6aef3895bc39ead3, type: 3}
+--- !u!50 &1483247599
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483247595}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1502429886
 GameObject:
   m_ObjectHideFlags: 0

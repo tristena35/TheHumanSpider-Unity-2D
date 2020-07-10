@@ -7,7 +7,11 @@ public class Villain : MonoBehaviour
     [Header("Villain Traits")]
     [SerializeField] bool isMoving = true;
     [SerializeField] float moveSpeed = 5f;
-    float timeToMove = 0.7f;
+    [SerializeField] float moveVerticalSpeed = -2f;
+    float threeSeconds = 3f;
+    float timeToMove = 1f;
+    float timeToMoveVertically = 2f;
+    float timeInBetweenQuotes = 12f;
 
     [Header("Villain Projectile")]
     [SerializeField] GameObject projectile;
@@ -17,6 +21,9 @@ public class Villain : MonoBehaviour
     [Header("Villain Sounds")]
     [SerializeField] AudioClip helloMyDearSFX;
     float villainVolume = 1f;
+    // 9 quotes
+    [SerializeField] AudioClip[] goblinInGameQuotes;
+    int quoteNumber = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +32,7 @@ public class Villain : MonoBehaviour
         AudioSource.PlayClipAtPoint(helloMyDearSFX, Camera.main.transform.position, villainVolume);
 
         StartCoroutine( MoveForTwoSeconds() );
+        StartCoroutine( SayQuotes() );
     }
 
     // Update is called once per frame
@@ -43,6 +51,7 @@ public class Villain : MonoBehaviour
         bomb.GetComponent<Rigidbody2D>().velocity = bombMoveSpeed;
     }
 
+    // Called at start to fly up
     IEnumerator MoveForTwoSeconds()
     {
         yield return new WaitForSeconds(timeToMove);
@@ -50,13 +59,47 @@ public class Villain : MonoBehaviour
         // Stop moving
         isMoving = false;
         StartCoroutine( ThrowBombsContinuously() );
+        StartCoroutine( WaitToMoveVertically() );
     }
 
+    // Throwing bombs
     IEnumerator ThrowBombsContinuously()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(threeSeconds);
 
         ThrowBomb();
         StartCoroutine( ThrowBombsContinuously() );
+    }
+
+    // Start Vertical Movement after 3 seconds when stops intial fly
+    IEnumerator WaitToMoveVertically()
+    {
+        yield return new WaitForSeconds(threeSeconds);
+
+        StartCoroutine( VerticalMovement() );
+    }
+
+    // In game vertical movement
+    IEnumerator VerticalMovement()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2( 0f, moveVerticalSpeed );
+  
+        yield return new WaitForSeconds(timeToMoveVertically);
+        
+        moveVerticalSpeed *= -1;
+        StartCoroutine( VerticalMovement() );
+    }
+
+    // Every 12 seconds, says new quote
+    IEnumerator SayQuotes()
+    {
+        yield return new WaitForSeconds(timeInBetweenQuotes);
+
+        // Play Quote Audio Clip
+        AudioClip quote = goblinInGameQuotes[ quoteNumber % 9];
+        quoteNumber ++;
+        AudioSource.PlayClipAtPoint(quote, Camera.main.transform.position, villainVolume);
+
+        StartCoroutine( SayQuotes() );
     }
 }

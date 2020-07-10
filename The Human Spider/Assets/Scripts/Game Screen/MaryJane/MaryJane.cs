@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class MaryJane : MonoBehaviour
 {
-    [Header("Mary Jane Audio")]
-    [SerializeField] float moveSpeed = 5f;
+    [Header("Villain Traits")]
     [SerializeField] bool isMoving = true;
-    float timeToMove = 0.7f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveVerticalSpeed = -2f;
+    float threeSeconds = 3f;
+    float timeToMove = 1f;
+    float timeToMoveVertically = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +30,24 @@ public class MaryJane : MonoBehaviour
         yield return new WaitForSeconds(timeToMove);
 
         isMoving = false;
+        StartCoroutine( WaitToMoveVertically() );
+    }
+    // Start Vertical Movement after 3 seconds when stops intial fly
+    IEnumerator WaitToMoveVertically()
+    {
+        yield return new WaitForSeconds(threeSeconds);
+
+        StartCoroutine( VerticalMovement() );
+    }
+
+    // In game vertical movement
+    IEnumerator VerticalMovement()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2( 0f, moveVerticalSpeed );
+  
+        yield return new WaitForSeconds(timeToMoveVertically);
+        
+        moveVerticalSpeed *= -1;
+        StartCoroutine( VerticalMovement() );
     }
 }
