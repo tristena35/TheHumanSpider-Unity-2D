@@ -9,7 +9,7 @@ public class MaryJane : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float moveVerticalSpeed = -2f;
     float threeSeconds = 3f;
-    float timeToMove = 1f;
+    float timeToMove = 0.85f;
     float timeToMoveVertically = 2f;
 
     // Start is called before the first frame update

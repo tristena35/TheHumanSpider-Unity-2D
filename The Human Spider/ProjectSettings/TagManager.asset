@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HumanSpider
   - Building
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Building
+  - Villain Projectile
   - 
   - 
   - 

@@ -9,14 +9,13 @@ public class Villain : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float moveVerticalSpeed = -2f;
     float threeSeconds = 3f;
-    float timeToMove = 1f;
+    float timeToMove = 0.85f;
     float timeToMoveVertically = 2f;
     float timeInBetweenQuotes = 12f;
 
     [Header("Villain Projectile")]
     [SerializeField] GameObject projectile;
-    Vector2 bombMoveSpeed = new Vector2( -5f, 0f );
-    
+    Vector2 bombMoveSpeed = new Vector2( -7f, 0f );
 
     [Header("Villain Sounds")]
     [SerializeField] AudioClip helloMyDearSFX;
