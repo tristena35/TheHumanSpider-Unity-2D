@@ -25,7 +25,6 @@ public class StartTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Start Game!");
         isStarted = true;
     }
 }

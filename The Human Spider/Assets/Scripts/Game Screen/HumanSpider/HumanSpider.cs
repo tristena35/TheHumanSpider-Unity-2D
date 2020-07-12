@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanSpider : MonoBehaviour
 {
     [Header("Human Spider Traits")]
+    [SerializeField] int numberOfLives = 3;
     [SerializeField] float jumpForce = 3f;
     [SerializeField] float initialJumpForceUp = 10f;
     [SerializeField] float initialJumpForceRight = 3f;
@@ -16,6 +17,8 @@ public class HumanSpider : MonoBehaviour
     [Header("Human Spider Audio")]
     [SerializeField] AudioClip hangOnMaryJaneSFX;
     float voiceVolume = 1f;
+
+    [SerializeField] GameObject explosionVFX;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +40,14 @@ public class HumanSpider : MonoBehaviour
     void FixedUpdate()
     {
         if( isLocked )
+        {
             LockCharacter();
-        Jump();
+        }
+        else
+        {
+            Jump();
+            Rotate();
+        }
     }
 
     void Jump()
@@ -47,6 +56,12 @@ public class HumanSpider : MonoBehaviour
         {
             rigidBody2D.AddForce( transform.up * jumpForce, ForceMode2D.Impulse );
         }
+    }
+
+    void Rotate()
+    {
+        var rotation = Input.GetAxis("RotateHumanSpider") * Time.deltaTime * 250f;
+        transform.Rotate(Vector3.forward * rotation);
     }
 
     void JumpOntoScene()
@@ -69,5 +84,16 @@ public class HumanSpider : MonoBehaviour
         JumpOntoScene();
         // Play Yelling Audio Clip
         AudioSource.PlayClipAtPoint(hangOnMaryJaneSFX, Camera.main.transform.position, voiceVolume);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        if( collider.gameObject.tag == "Projectile" )
+        {
+            GameObject explosion = Instantiate(
+                explosionVFX, 
+                new Vector3(transform.position.x, transform.position.y, -2), 
+                transform.rotation) as GameObject;
+        }
     }
 }

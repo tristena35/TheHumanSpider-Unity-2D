@@ -6,13 +6,12 @@ public class GameOverTrigger : MonoBehaviour
 {
     [Header("Game Over Variables")]
     [SerializeField] bool isOver = false;
-
-    SceneLoader sceneLoader;
+    Game game;
 
     // Start is called before the first frame update
     void Start()
     {
-        sceneLoader = FindObjectOfType<SceneLoader>();
+        game = FindObjectOfType<Game>();
     }
 
     // Update is called once per frame
@@ -20,7 +19,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if( IsOver() )
         {
-            sceneLoader.LoadGameOver();
+            game.EndGame();
         }
     }
 
@@ -33,9 +32,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if( collider.gameObject.tag == "HumanSpider" )
         {
-            Debug.Log("Game Over!");
             isOver = true;
         }
-
     }
 }
