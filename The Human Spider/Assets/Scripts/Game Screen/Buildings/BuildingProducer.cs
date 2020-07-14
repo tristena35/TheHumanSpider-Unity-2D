@@ -11,16 +11,30 @@ public class BuildingProducer : MonoBehaviour
     [Header("Building Location")]
     [SerializeField] Vector3 startPos;
 
+    [Header("Building Movement")]
+    Vector2 buildingMoveSpeed = new Vector2( -5f, 0f );
+
+    StartTrigger startTrigger;
+
+    bool justStarted = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        startTrigger = FindObjectOfType<StartTrigger>();
+
         startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if ( startTrigger.IsStarted() && justStarted )
+        {
+            justStarted = false;
+            CreateFirstBuilding();
+        }
     }
 
     public void ProduceBuilding()
@@ -36,7 +50,17 @@ public class BuildingProducer : MonoBehaviour
                 buildingPrefab, 
                 transform.position, 
                 Quaternion.identity) as GameObject;
+        building.GetComponent<Rigidbody2D>().velocity = buildingMoveSpeed;
         ResetBuildingHeight();
+    }
+
+    void CreateFirstBuilding()
+    {
+        GameObject building = Instantiate(
+                buildingPrefab, 
+                transform.position, 
+                Quaternion.identity) as GameObject;
+        building.GetComponent<Rigidbody2D>().velocity = buildingMoveSpeed;
     }
 
     void MoveNextBuilding()

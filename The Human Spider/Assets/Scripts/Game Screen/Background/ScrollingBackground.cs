@@ -6,13 +6,13 @@ public class ScrollingBackground : MonoBehaviour
 {
 
     [Header("Background Attributes")]
-    public float scrollSpeed;
+    [SerializeField] float scrollSpeed;
     public Renderer backgroundRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        scrollSpeed = 0.01f;
     }
 
     // Update is called once per frame

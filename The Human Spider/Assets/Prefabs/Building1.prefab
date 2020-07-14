@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7778171242941346094}
   - component: {fileID: 7778171242941346095}
-  - component: {fileID: 7778171242941346092}
   - component: {fileID: 5576473223368534956}
   - component: {fileID: 2797840659531033427}
   m_Layer: 8
@@ -84,19 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7778171242941346092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7778171242941346093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59933d4badf3442cdb707f5f40d567f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: -5
 --- !u!50 &5576473223368534956
 Rigidbody2D:
   serializedVersion: 4
@@ -113,7 +99,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: d9d3291b577254017ac4578aa7206a56, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -127,7 +113,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7778171242941346093}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: d9d3291b577254017ac4578aa7206a56, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
