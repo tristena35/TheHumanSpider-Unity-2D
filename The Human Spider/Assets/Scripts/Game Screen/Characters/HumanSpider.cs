@@ -20,7 +20,10 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] AudioClip hangOnMaryJaneSFX;
     float voiceVolume = 1f;
 
+    [Header("Human Spider SFX / VFX")]
     [SerializeField] GameObject explosionVFX;
+    [SerializeField] AudioClip bombExplodeSFX;
+    float sfxVolume = 0.7f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +58,7 @@ public class HumanSpider : MonoBehaviour
 
     void MoveHorizontally()
     {
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * 2.5f;
+        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * 2.7f;
         transform.position = new Vector3(transform.position.x + deltaX, transform.position.y, 1);
     }
 
@@ -103,6 +106,8 @@ public class HumanSpider : MonoBehaviour
                     explosionVFX, 
                     new Vector3(transform.position.x, transform.position.y, 1), 
                     transform.rotation) as GameObject;
+            // Play Explode SFX Audio Clip
+            AudioSource.PlayClipAtPoint(bombExplodeSFX, Camera.main.transform.position, sfxVolume);
         }
     }
 }

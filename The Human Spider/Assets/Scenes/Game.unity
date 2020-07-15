@@ -1216,10 +1216,12 @@ MonoBehaviour:
   initialJumpForceUp: 10
   initialJumpForceRight: 3
   timeToMove: 3
+  timeTillRun: 1.5
   isLocked: 1
   hangOnMaryJaneSFX: {fileID: 8300000, guid: 5d2e19dd2799d41a5b4d1f0cd019c1c9, type: 3}
   explosionVFX: {fileID: 8160037992631919975, guid: ac675d1209e754c1cbb258240e6082f5,
     type: 3}
+  bombExplodeSFX: {fileID: 8300000, guid: 0434a5427b35c48389eab9600737d679, type: 3}
 --- !u!1 &1237493836
 GameObject:
   m_ObjectHideFlags: 0
