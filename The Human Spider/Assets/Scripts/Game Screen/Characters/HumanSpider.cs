@@ -10,8 +10,10 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] float initialJumpForceUp = 10f;
     [SerializeField] float initialJumpForceRight = 3f;
     [SerializeField] float timeToMove = 3f;
-    Vector3 startPosition;
+    [SerializeField] float timeTillRun = 1.5f;
     [SerializeField] bool isLocked = true;
+    Vector3 startPosition;
+    Vector2 upwardForce;
     Rigidbody2D rigidBody2D;
     
     [Header("Human Spider Audio")]
@@ -24,8 +26,8 @@ public class HumanSpider : MonoBehaviour
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
-
         startPosition = new Vector3( transform.position.x, transform.position.y, 1 );
+        upwardForce = new Vector2( 0f, jumpForce );
 
         // Have the human spider jump onto the scene
         StartCoroutine( InitialJump() );
@@ -45,16 +47,23 @@ public class HumanSpider : MonoBehaviour
         }
         else
         {
+            MoveHorizontally();
             Jump();
             Rotate();
         }
+    }
+
+    void MoveHorizontally()
+    {
+        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * 2.5f;
+        transform.position = new Vector3(transform.position.x + deltaX, transform.position.y, 1);
     }
 
     void Jump()
     {
         if( Input.GetButtonDown("Jump") )
         {
-            rigidBody2D.AddForce( transform.up * jumpForce, ForceMode2D.Impulse );
+            rigidBody2D.AddForce( upwardForce, ForceMode2D.Impulse );
         }
     }
 
@@ -91,9 +100,9 @@ public class HumanSpider : MonoBehaviour
         if( collider.gameObject.tag == "Projectile" )
         {
             GameObject explosion = Instantiate(
-                explosionVFX, 
-                new Vector3(transform.position.x, transform.position.y, -2), 
-                transform.rotation) as GameObject;
+                    explosionVFX, 
+                    new Vector3(transform.position.x, transform.position.y, 1), 
+                    transform.rotation) as GameObject;
         }
     }
 }

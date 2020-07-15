@@ -6,7 +6,7 @@ using TMPro;
 public class InstructionCanvas : MonoBehaviour
 {
     [Header("Times")]
-    [SerializeField] float timeToShowQuote = 4.2f;
+    [SerializeField] float timeToShowQuote = 4.8f;
 
     [Header("Text Fields")]
     [SerializeField] TextMeshProUGUI FirstQuote;

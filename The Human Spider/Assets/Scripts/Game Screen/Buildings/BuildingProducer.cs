@@ -18,7 +18,6 @@ public class BuildingProducer : MonoBehaviour
 
     bool justStarted = true;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +29,7 @@ public class BuildingProducer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Send first building after intial trigger
         if ( startTrigger.IsStarted() && justStarted )
         {
             justStarted = false;
