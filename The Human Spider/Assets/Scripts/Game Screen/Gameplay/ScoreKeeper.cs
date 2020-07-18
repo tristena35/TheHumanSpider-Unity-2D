@@ -7,6 +7,7 @@ public class ScoreKeeper : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
 
+    float score;
     bool startTracking = false;
 
     // Start is called before the first frame update
@@ -20,14 +21,23 @@ public class ScoreKeeper : MonoBehaviour
     {
         if( startTracking )
         {
-            ScoreTracking();
+            startTracking = false;
+            StartCoroutine( ScoreTracking(1f) );
+        }
+        SetUpdatedScore();
+    }
+
+    private IEnumerator ScoreTracking(float waitTime) {
+        while (true) 
+        {
+            yield return new WaitForSeconds(waitTime);
+            score += 100;
         }
     }
 
-    // Every second that 
-    void ScoreTracking()
+    void SetUpdatedScore()
     {
-
+        scoreText.text = score + "";
     }
 
     // Call from start trigger IEnumerator
