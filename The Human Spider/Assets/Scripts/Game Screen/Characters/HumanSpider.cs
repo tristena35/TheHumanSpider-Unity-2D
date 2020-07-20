@@ -12,6 +12,7 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] float timeToMove = 3f;
     [SerializeField] float timeTillRun = 1.5f;
     [SerializeField] bool isLocked = true;
+    float moveSpeed = 2.7f;
     Vector3 startPosition;
     Vector2 upwardForce;
     Rigidbody2D rigidBody2D;
@@ -25,9 +26,13 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] AudioClip bombExplodeSFX;
     float sfxVolume = 0.7f;
 
+    Lives lives;
+
     // Start is called before the first frame update
     void Start()
     {
+        lives = FindObjectOfType<Lives>();
+
         rigidBody2D = GetComponent<Rigidbody2D>();
         startPosition = new Vector3( transform.position.x, transform.position.y, 1 );
         upwardForce = new Vector2( 0f, jumpForce );
@@ -58,7 +63,7 @@ public class HumanSpider : MonoBehaviour
 
     void MoveHorizontally()
     {
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * 2.7f;
+        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         transform.position = new Vector3(transform.position.x + deltaX, transform.position.y, 1);
     }
 
@@ -102,6 +107,7 @@ public class HumanSpider : MonoBehaviour
     {
         if( collider.gameObject.tag == "Projectile" )
         {
+            lives.LoseLife();
             GameObject explosion = Instantiate(
                     explosionVFX, 
                     new Vector3(transform.position.x, transform.position.y, 1), 
