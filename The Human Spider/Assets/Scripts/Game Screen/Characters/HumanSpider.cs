@@ -13,6 +13,7 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] float timeTillRun = 1.5f;
     [SerializeField] bool isLocked = true;
     float moveSpeed = 2.7f;
+    float rotationSpeed = 250f;
     Vector3 startPosition;
     Vector2 upwardForce;
     Rigidbody2D rigidBody2D;
@@ -26,11 +27,16 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] AudioClip bombExplodeSFX;
     float sfxVolume = 0.7f;
 
+    [Header("Coordinate Boundaries")]
+    public float xMax;
+
     Lives lives;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetUpBoundaries();
+
         lives = FindObjectOfType<Lives>();
 
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -61,10 +67,19 @@ public class HumanSpider : MonoBehaviour
         }
     }
 
+    void SetUpBoundaries()
+    {
+        Camera gameCamera = Camera.main;
+
+        float halfWidth = 5f;
+        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1,0,0)).x - halfWidth;
+    }
+
     void MoveHorizontally()
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        transform.position = new Vector3(transform.position.x + deltaX, transform.position.y, 1);
+        var newXPos = Mathf.Clamp(transform.position.x + deltaX, -100f, xMax);
+        transform.position = new Vector3(newXPos, transform.position.y, 1);
     }
 
     void Jump()
@@ -77,7 +92,7 @@ public class HumanSpider : MonoBehaviour
 
     void Rotate()
     {
-        var rotation = Input.GetAxis("RotateHumanSpider") * Time.deltaTime * 250f;
+        var rotation = Input.GetAxis("RotateHumanSpider") * Time.deltaTime * rotationSpeed;
         transform.Rotate(Vector3.forward * rotation);
     }
 

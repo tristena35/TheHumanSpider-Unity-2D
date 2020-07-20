@@ -6,6 +6,7 @@ public class GameOverTrigger : MonoBehaviour
 {
     [Header("Game Over Variables")]
     [SerializeField] bool isOver = false;
+    
     Game game;
 
     // Start is called before the first frame update

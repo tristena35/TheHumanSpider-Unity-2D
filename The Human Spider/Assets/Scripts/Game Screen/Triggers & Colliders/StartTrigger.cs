@@ -28,7 +28,9 @@ public class StartTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         isStarted = true;
+
         StartCoroutine( StartKeepingScore() );
+        
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         
     }

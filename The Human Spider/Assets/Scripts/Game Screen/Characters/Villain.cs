@@ -19,9 +19,9 @@ public class Villain : MonoBehaviour
 
     [Header("Villain Sounds")]
     [SerializeField] AudioClip helloMyDearSFX;
-    float villainVolume = 1f;
     // 9 quotes
     [SerializeField] AudioClip[] goblinInGameQuotes;
+    float villainVolume = 1f;
     int quoteNumber = 0;
 
     // Start is called before the first frame update
