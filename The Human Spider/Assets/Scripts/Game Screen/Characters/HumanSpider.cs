@@ -107,11 +107,14 @@ public class HumanSpider : MonoBehaviour
     {
         if( collider.gameObject.tag == "Projectile" )
         {
+            Destroy(collider.gameObject);
             lives.LoseLife();
+            /*
             GameObject explosion = Instantiate(
                     explosionVFX, 
                     new Vector3(transform.position.x, transform.position.y, 1), 
                     transform.rotation) as GameObject;
+            */
             // Play Explode SFX Audio Clip
             AudioSource.PlayClipAtPoint(bombExplodeSFX, Camera.main.transform.position, sfxVolume);
         }
