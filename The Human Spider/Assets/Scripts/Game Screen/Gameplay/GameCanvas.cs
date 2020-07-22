@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class GameCanvas : MonoBehaviour
 {
-    [SerializeField] int currentSceneIndex;
+    [SerializeField] TextMeshProUGUI scoreText;
+    float gameScore;
 
     ScoreKeeper scoreKeeper;
-
-    private void Awake()
-    {
-        SetUpSingleton();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,31 +24,12 @@ public class GameCanvas : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Grabs the number of the current scene
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // Destroy it on main menu
-        if( currentSceneIndex == 1 ) 
-        {
-            Destroy(gameObject);
-        }
-
-        if( currentSceneIndex == 4 ) 
-        {
-            scoreKeeper.SetGameIsOver();
-        }
+        SetUpdatedScore();
     }
 
-    private void SetUpSingleton()
+    void SetUpdatedScore()
     {
-        // If there is already a music object for the main theme, do not start a new one
-        if(FindObjectsOfType(GetType()).Length > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        gameScore = scoreKeeper.GetScore();
+        scoreText.text = gameScore + "";
     }
 }

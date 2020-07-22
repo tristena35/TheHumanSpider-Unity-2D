@@ -8,11 +8,13 @@ public class GameOverTrigger : MonoBehaviour
     [SerializeField] bool isOver = false;
     
     Game game;
+    ScoreKeeper scoreKeeper;
 
     // Start is called before the first frame update
     void Start()
     {
         game = FindObjectOfType<Game>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if( IsOver() )
         {
+            // Game Over
             game.EndGame();
         }
     }
@@ -33,6 +36,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if( collider.gameObject.tag == "HumanSpider" )
         {
+            scoreKeeper.SetGameIsOver();
             isOver = true;
         }
     }

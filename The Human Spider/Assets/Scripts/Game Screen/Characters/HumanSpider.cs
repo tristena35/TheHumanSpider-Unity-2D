@@ -9,9 +9,11 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] float jumpForce = 3f;
     [SerializeField] float initialJumpForceUp = 10f;
     [SerializeField] float initialJumpForceRight = 3f;
-    [SerializeField] float timeToMove = 3f;
+    [SerializeField] float timeToLock = 3f;
+    [SerializeField] float timeTillMovement = 2f;
     [SerializeField] float timeTillRun = 1.5f;
     [SerializeField] bool isLocked = true;
+    [SerializeField] bool ableToMove = false;
     Vector3 startPosition;
     Vector2 upwardForce;
     Rigidbody2D rigidBody2D;
@@ -59,7 +61,7 @@ public class HumanSpider : MonoBehaviour
         {
             LockCharacter();
         }
-        else
+        if( ableToMove )
         {
             MoveHorizontally();
             Jump();
@@ -71,7 +73,7 @@ public class HumanSpider : MonoBehaviour
     {
         Camera gameCamera = Camera.main;
 
-        float halfWidth = 5f;
+        float halfWidth = 9f;
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1,0,0)).x - halfWidth;
     }
 
@@ -110,12 +112,21 @@ public class HumanSpider : MonoBehaviour
 
     IEnumerator InitialJump()
     {
-        yield return new WaitForSeconds(timeToMove);
+        yield return new WaitForSeconds(timeToLock);
         
+        StartCoroutine( AllowMovement() );
+
         isLocked = false;
         JumpOntoScene();
         // Play Yelling Audio Clip
         AudioSource.PlayClipAtPoint(hangOnMaryJaneSFX, Camera.main.transform.position, voiceVolume);
+    }
+
+    IEnumerator AllowMovement()
+    {
+        yield return new WaitForSeconds(timeTillMovement);
+        
+        ableToMove = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)

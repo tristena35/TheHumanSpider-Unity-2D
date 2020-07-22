@@ -20,6 +20,7 @@ public class StartTrigger : MonoBehaviour
         
     }
 
+    // Used by BuildingProducer
     public bool IsStarted()
     {
         return isStarted;

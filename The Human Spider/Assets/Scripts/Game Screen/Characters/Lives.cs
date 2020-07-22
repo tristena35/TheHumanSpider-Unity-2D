@@ -9,11 +9,13 @@ public class Lives : MonoBehaviour
     [SerializeField] GameObject[] lives;
 
     Game game;
+    ScoreKeeper scoreKeeper;
 
     // Start is called before the first frame update
     void Start()
     {
         game = FindObjectOfType<Game>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class Lives : MonoBehaviour
     {
         if( numberOfLives == 1 )
         {
+            scoreKeeper.SetGameIsOver();
             // Game Over
             game.EndGame();
         }
@@ -34,5 +37,10 @@ public class Lives : MonoBehaviour
             lives[ numberOfLives - 1 ].SetActive(false);
             numberOfLives --;
         }
+    }
+
+    public int GetLives()
+    {
+        return numberOfLives;
     }
 }
