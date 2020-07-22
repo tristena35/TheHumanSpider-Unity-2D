@@ -9,6 +9,7 @@ public class ScoreKeeper : MonoBehaviour
 
     float score;
     bool startTracking = false;
+    [SerializeField] bool gameIsOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +28,6 @@ public class ScoreKeeper : MonoBehaviour
         SetUpdatedScore();
     }
 
-    private IEnumerator ScoreTracking(float waitTime) {
-        while (true) 
-        {
-            yield return new WaitForSeconds(waitTime);
-            score += 100;
-        }
-    }
-
     void SetUpdatedScore()
     {
         scoreText.text = score + "";
@@ -44,5 +37,18 @@ public class ScoreKeeper : MonoBehaviour
     public void SetStartTracking()
     {
         startTracking = true;
+    }
+
+    public void SetGameIsOver()
+    {
+        gameIsOver = true;
+    }
+
+    private IEnumerator ScoreTracking(float waitTime) {
+        while ( !gameIsOver ) 
+        {
+            yield return new WaitForSeconds(waitTime);
+            score += 100;
+        }
     }
 }

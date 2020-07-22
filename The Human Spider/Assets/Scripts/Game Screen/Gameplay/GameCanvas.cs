@@ -7,6 +7,8 @@ public class GameCanvas : MonoBehaviour
 {
     [SerializeField] int currentSceneIndex;
 
+    ScoreKeeper scoreKeeper;
+
     private void Awake()
     {
         SetUpSingleton();
@@ -15,13 +17,13 @@ public class GameCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        FixedUpdate();
     }
 
     private void FixedUpdate()
@@ -33,6 +35,11 @@ public class GameCanvas : MonoBehaviour
         if( currentSceneIndex == 1 ) 
         {
             Destroy(gameObject);
+        }
+
+        if( currentSceneIndex == 4 ) 
+        {
+            scoreKeeper.SetGameIsOver();
         }
     }
 

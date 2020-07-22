@@ -12,11 +12,11 @@ public class HumanSpider : MonoBehaviour
     [SerializeField] float timeToMove = 3f;
     [SerializeField] float timeTillRun = 1.5f;
     [SerializeField] bool isLocked = true;
-    float moveSpeed = 2.7f;
-    float rotationSpeed = 250f;
     Vector3 startPosition;
     Vector2 upwardForce;
     Rigidbody2D rigidBody2D;
+    float moveSpeed = 2.7f;
+    float rotationSpeed = 250f;
     
     [Header("Human Spider Audio")]
     [SerializeField] AudioClip hangOnMaryJaneSFX;
