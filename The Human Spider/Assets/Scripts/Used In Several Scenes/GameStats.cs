@@ -63,4 +63,9 @@ public class GameStats : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    public float GetScore()
+    {
+        return endingScore;
+    }
 }
