@@ -9,8 +9,8 @@ public class GameStats : MonoBehaviour
     Lives lives;
 
     [Header("Stats")]
-    [SerializeField] float endingScore;
-    [SerializeField] int numberOfLives;
+    public float endingScore;
+    public int numberOfLives;
 
     [Header("Scene Number")]
     [SerializeField] int currentSceneIndex;
@@ -22,6 +22,11 @@ public class GameStats : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        InstantiateReferences();
+    }
+
+    void InstantiateReferences()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         lives = FindObjectOfType<Lives>();
@@ -38,9 +43,6 @@ public class GameStats : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        endingScore = scoreKeeper.GetScore();
-        numberOfLives = lives.GetLives();
     }
 
     public void ResetGameStats()
@@ -48,7 +50,17 @@ public class GameStats : MonoBehaviour
         endingScore = 0f;
         numberOfLives = 0;
 
-        Debug.Log("Called");
+        Debug.Log("Stats Reset");
+    }
+
+    public void GrabGameStats()
+    {
+        InstantiateReferences();
+
+        endingScore = scoreKeeper.GetScore();
+        numberOfLives = lives.GetLives();
+
+        Debug.Log("Grab Stats Reset");
     }
 
     private void SetUpSingleton()
