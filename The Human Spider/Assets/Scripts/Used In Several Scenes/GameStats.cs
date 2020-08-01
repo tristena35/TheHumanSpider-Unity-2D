@@ -7,10 +7,12 @@ public class GameStats : MonoBehaviour
 {
     ScoreKeeper scoreKeeper;
     Lives lives;
+    GameTimer gameTimer;
 
     [Header("Stats")]
     public float endingScore;
     public int numberOfLives;
+    public float gameTime;
 
     [Header("Scene Number")]
     [SerializeField] int currentSceneIndex;
@@ -30,6 +32,7 @@ public class GameStats : MonoBehaviour
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         lives = FindObjectOfType<Lives>();
+        gameTimer = FindObjectOfType<GameTimer>();
     }
 
     // Update is called once per frame
@@ -49,6 +52,7 @@ public class GameStats : MonoBehaviour
     {
         endingScore = 0f;
         numberOfLives = 0;
+        gameTime = 0f;
 
         Debug.Log("Stats Reset");
     }
@@ -59,6 +63,7 @@ public class GameStats : MonoBehaviour
 
         endingScore = scoreKeeper.GetScore();
         numberOfLives = lives.GetLives();
+        gameTime = gameTimer.GetTime();
 
         Debug.Log("Grab Stats Reset");
     }
@@ -79,5 +84,10 @@ public class GameStats : MonoBehaviour
     public float GetScore()
     {
         return endingScore;
+    }
+
+    public float GetTime()
+    {
+        return gameTime;
     }
 }

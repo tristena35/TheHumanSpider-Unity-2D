@@ -40,6 +40,11 @@ public class GameTimer : MonoBehaviour
         timerIsRunning = true;
     }
 
+    public float GetTime()
+    {
+        return currentTime;
+    }
+
     IEnumerator TimerToStart()
     {
         yield return new WaitForSeconds(timeTillStart);
